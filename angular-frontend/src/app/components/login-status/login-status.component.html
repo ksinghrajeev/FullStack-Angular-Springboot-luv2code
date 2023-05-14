@@ -1,0 +1,25 @@
+<!-- <div class="login-status-header">
+
+    <div *ngIf="isAuthenticated && userName" class="login-status-user-info">
+        Welcome back {{ userName }}!
+    </div>
+
+    <button *ngIf="!isAuthenticated" routerLink="/login" class="security-btn">Login</button>
+    
+    <button *ngIf="isAuthenticated" (click)="logout()" class="security-btn">Logout</button>
+
+</div>  -->
+
+
+
+<div class="login-status-header">
+    <div *ngIf="(authStateService.authState$ | async)?.isAuthenticated && userName" class="login-status-user-info" >
+        Welcome back {{ userName }}!
+    </div>
+    <!-- <button class="security-btn" *ngIf="!(authService.authState$ | async)?.isAuthenticated" (click)="login()">Login</button> -->
+    <button id="login-button" class="security-btn" *ngIf="!(authStateService.authState$ | async)?.isAuthenticated" routerLink="/login">Login</button>
+    <button id="members-button" class="security-btn" *ngIf="(authStateService.authState$ | async)?.isAuthenticated" routerLink="/members">Member</button>
+    <button id="orders-button" class="security-btn" *ngIf="(authStateService.authState$ | async)?.isAuthenticated" routerLink="/order-history">Orders</button>
+    <button id="logout-button" class="security-btn" *ngIf="(authStateService.authState$ | async)?.isAuthenticated" (click)="logout()">Logout</button>
+   
+</div> 
